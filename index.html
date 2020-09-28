@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 文字綁定 -->
+        {{ Message }}
+        <!-- 迴圈v-for -->
+        <ul>
+            <li v-for="item in list">{{ item }}</li>
+        </ul>
+        <!-- 事件v-on -->
+        <button type="button" v-on:click="btnClick">Click me</button>
+        <!-- v-model -->
+        <input type="text" v-model="Message">
+        <!-- v-if -->
+        <ul v-if="isShow">
+            <li v-for="item in list">{{ item }}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script type="text/javascript">
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                Message:"Hello World",
+                list:["AAA","BBB","CCC"],
+                isShow:false
+            },
+            methods:{
+                btnClick(){
+                    alert("Hello World");
+                    this.isShow=!this.isShow;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
