@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./page.css">
+</head>
+<body>
+    <div id="app">
+        <p class="item">雙向綁定，更新Model值</p>
+        <svg width="400" height="110">
+            <rect v-bind:width="rectWidth" v-bind:height="rectHeight" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+            Sorry, your browser does not support inline SVG.             
+        </svg>
+        <p class="item">長度</p>
+        <input type="range" min="10" max="399" v-model="rectWidth">
+        <p class="item">寬度</p>
+        <input type="range" min="10" max="109" v-model="rectHeight">
+        <hr/>
+        <p class="item">不使用雙向綁定，無法更新Model值</p>
+        <p class="item">長度</p>
+        <input type="range" min="10" max="399" v-bind:width="rectWidth">
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
