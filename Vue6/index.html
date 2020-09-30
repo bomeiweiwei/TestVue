@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./page.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>   
+    <div id="app">
+        產品名稱:<input type="text" v-model="ProductName">
+        價錢:<input type="number" v-model="Price" min="0">
+        數量:<input type="number" v-model="Count" min="0">  
+        <button type="button" v-on:click="AddProduct" class="btn btn-success">新增產品</button>
+        <hr/>  
+        <table>
+            <tr>
+                <th>編號</th>
+                <th>產品名稱</th>
+                <th>價錢</th>
+                <th>數量</th>
+                <th></th>
+            </tr>
+            <tr v-for="(item,index) in ProductList">
+                <td>{{++index}}</td>
+                <td>{{item.ProductName}}</td>
+                <td>{{item.Price}}</td>
+                <td>{{item.Count}}</td>
+                <td>
+                    <button type="button" v-on:click="DelProduct(index)" class="btn btn-danger">刪除</button>
+                </td>
+            </tr>
+        </table>    
+
+        
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
