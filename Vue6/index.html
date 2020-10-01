@@ -14,23 +14,27 @@
         數量:<input type="number" v-model="Count" min="0">  
         <button type="button" v-on:click="AddProduct" class="btn btn-success">新增產品</button>
         <hr/>  
-        <table>
-            <tr>
-                <th>編號</th>
-                <th>產品名稱</th>
-                <th>價錢</th>
-                <th>數量</th>
-                <th></th>
-            </tr>
-            <tr v-for="(item,index) in ProductList">
-                <td>{{++index}}</td>
-                <td>{{item.ProductName}}</td>
-                <td>{{item.Price}}</td>
-                <td>{{item.Count}}</td>
-                <td>
-                    <button type="button" v-on:click="DelProduct(index)" class="btn btn-danger">刪除</button>
-                </td>
-            </tr>
+        <table class="table table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th>編號</th>
+                    <th>產品名稱</th>
+                    <th>價錢</th>
+                    <th>數量</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in ProductList">
+                    <td class="table-active">{{++index}}</td>
+                    <td>{{item.ProductName}}</td>
+                    <td>{{item.Price}}</td>
+                    <td>{{item.Count}}</td>
+                    <td>
+                        <button type="button" v-on:click="DelProduct(index)" class="btn btn-danger">刪除</button>
+                    </td>
+                </tr>
+            </tbody>           
         </table>    
         <hr/>
         <span>總計：</span>

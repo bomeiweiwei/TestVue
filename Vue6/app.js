@@ -26,6 +26,7 @@ var vm=new Vue({
         var total=0;
         total=CalTotal(this.ProductList);
         this.$refs.Total.innerText=total;
+        this.$el.style.color='blue';
     }
 });
 
