@@ -12,9 +12,7 @@
         <div id="app">       
             <div class="img-thumbnail clearfix col-md-4 col-12" style="padding:20px">
                 <h4 class="bg-primary rounded text-center text-white" style="padding:10px">書籍上架</h4>
-                <p>
-                    <input type="button" value="上架" class="btn btn-success" />
-                </p>
+               
                 <div class="form-group form-row">
                     <label for="txtBookName">書名</label>&nbsp;
                     <input type="text" id="txtBookName" v-model="txtBookName" required class="form-control" />
@@ -40,52 +38,29 @@
                     <!-- select -->
                     <label for="selectBookCat">書籍類別</label>
                     <select id="selectBookCat" v-model="selectBookCat" class="form-control">
-                        <option value="">請選擇</option>
-                        <option value="1">科技類</option>
-                        <option value="2">旅遊類</option>
-                        <option value="3">大自然</option>
-                        <option value="4">影視類</option>
+                        <option v-for="item in selectBookCatList" v-bind:value="item.value">{{ item.text }}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <!-- radio -->
                     <label for="SecretValue">機密性</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" v-model="SecretValue" id="Secret1" value="High" checked>
-                        <label class="form-check-label" for="Secret1">
-                            高
+                    <div class="form-check form-check-inline" v-for="(item,index) in SecretValueList" :key="index">
+                        <input class="form-check-input" type="radio" v-model="SecretValue" v-bind:id="'Secret'+index" v-bind:value="item.value" >
+                        <label class="form-check-label" v-bind:for="'Secret'+index">
+                            {{ item.text }}
                         </label>
-                      </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" v-model="SecretValue" id="Secret2" value="Medium">
-                        <label class="form-check-label" for="Secret2">
-                            中
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" v-model="SecretValue" id="Secret3" value="Low">
-                        <label class="form-check-label" for="Secret3">
-                            低
-                        </label>
-                    </div>                    
+                    </div>                   
                 </div>
                 <div class="form-group">
                     <!-- checkbox -->
                     <label for="chkUserValues">
                         可借
                     </label>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" id="chkUser1" v-model="chkUserValues" value="teacher"/>
-                        <label for="chkUser1" class="custom-control-label">教職人員</label>
+                    <div class="custom-control custom-checkbox custom-control-inline" v-for="(item,index) in chkUserValuesList" :key="index">
+                        <input type="checkbox" class="custom-control-input" v-bind:id="'chkUser'+index" v-model="chkUserValues" v-bind:value="item.value"/>
+                        <label v-bind:for="'chkUser'+index" class="custom-control-label">{{item.text}}</label>
                     </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" id="chkUser2" v-model="chkUserValues" value="student"/>
-                        <label for="chkUser2" class="custom-control-label">學生</label>
-                    </div>
-                    <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" id="chkUser3" v-model="chkUserValues" value="people"/>
-                        <label for="chkUser3" class="custom-control-label">一般民眾</label>
-                    </div>
+
                 </div>               
                 
                 <div class="form-group">
@@ -107,21 +82,24 @@
                         
                     </div>
                 </div>
-                
+                <p>
+                    <input type="submit" value="上架" class="btn btn-success" v-on:click="submitForm"/>
+                    <input type="button" value="清除內容" class="btn btn-info" v-on:click="clearForm"/>
+                </p>
             </div>
 
-            <div>
-                <span>上架內容預覽:</span>
+            <div v-if="isShow">
+                <span>上架內容:</span>
                 <ul>
                     <li>書名:{{ txtBookName }}</li>
                     <li>內容介紹:{{ txtBookDesc }}</li>
                     <li>單價:{{ txtBookPrice }}</li>
                     <li>數量:{{ txtBookCount }}</li>
-                    <li>書籍類別:{{ selectBookCat }}</li>
-                    <li>機密性:{{ SecretValue }}</li>
-                    <li>可借:{{ chkUserValues }}</li>
-                    <li>發佈:{{ chkPublish }}</li>
-                    <li>提供會員價:{{ chkSprice }}</li>
+                    <li>書籍類別:{{ selectBookCatDesc }}</li>
+                    <li>機密性:{{ SecretValueDesc }}</li>
+                    <li>可借:{{ chkUserValuesDesc }}</li>
+                    <li>發佈:{{ chkPublishDesc }}</li>
+                    <li>提供會員價:{{ chkSpriceDesc }}</li>
                     <li>圖片預覽:
                         <div v-if="preview">
                             <img v-bind:src="preview">

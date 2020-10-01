@@ -1,26 +1,100 @@
 var vm=new Vue({
     el:'#app',
     data:{
+        isShow:false,
         txtBookName:'',
         txtBookDesc:'',
         txtBookPrice:0,
         txtBookCount:0,
+        selectBookCatList:[
+            {text:'請選擇',value:''},
+            {text:'科技類',value:'1'},
+            {text:'旅遊類',value:'2'},
+            {text:'大自然',value:'3'},
+            {text:'影視類',value:'4'},
+        ],
         selectBookCat:'',
+        chkUserValuesList:[
+            {text:'教職人員',value:'teacher'},
+            {text:'學生',value:'student'},
+            {text:'一般民眾',value:'people'},
+        ],
         chkUserValues:[],
+        SecretValueList:[
+            {text:'高',value:'High'},
+            {text:'中',value:'Medium'},
+            {text:'低',value:'Low'},
+        ],
         SecretValue:'',
         chkPublish:'',
         chkSprice:'',
-        preview:''
+        preview:'',
+        selectBookCatDesc:'',
+        SecretValueDesc:'',
+        chkUserValuesDesc:'',
+        chkPublishDesc:'',
+        chkSpriceDesc:''
     },
     methods:{
-        selectBookCatDesc(){
-
-        },
         handelFileUpload(event){
             var file=event.target.files[0];
             if(file && file.type.match(/^image\/(png|jpeg)$/)){
                 this.preview=window.URL.createObjectURL(file);
             }
+        },
+        submitForm(){          
+            if(this.selectBookCat==''){
+                selectBookCatDesc='';
+            }else{
+                this.selectBookCatList.forEach(item=>{
+                    if(this.selectBookCat==item.value){
+                        this.selectBookCatDesc=item.text;
+                    }
+                });
+            }
+            if(this.SecretValue==''){
+                SecretValueDesc='';
+            }else{
+                this.SecretValueList.forEach(item=>{
+                    if(this.SecretValue==item.value){
+                        this.SecretValueDesc=item.text;
+                    }
+                });
+            }
+            if(this.chkUserValues.length == 0){
+                chkUserValuesDesc='';
+            }else{
+                this.chkUserValues.forEach(item=>{
+                    var obj=this.chkUserValuesList.find(element=>element.value==item);
+                    if(obj!=null){
+                        this.chkUserValuesDesc+=obj.text+","; 
+                    }
+                });
+            }
+            if(this.chkPublish=='1'){
+                this.chkPublishDesc='發佈';
+            }else{
+                this.chkPublishDesc='';
+            }
+            if(this.chkSprice=='1'){
+                this.chkSpriceDesc='提供';
+            }else{
+                this.chkSpriceDesc='';
+            }
+            this.isShow=true;
+        },
+        clearForm:function(){
+            this.isShow=false,
+            this.txtBookName='',
+            this.txtBookDesc='',
+            this.txtBookPrice=0,
+            this.txtBookCount=0,
+            this.selectBookCat='',
+            this.chkUserValues=[],
+            this.SecretValue='',
+            this.chkPublish='',
+            this.chkSprice='',
+            this.preview=''
         }
     }
 });
