@@ -12,11 +12,27 @@ var vm=new Vue({
     },
     methods:{
         AddProduct(){
+            var total=0;
             var obj={ProductName:this.ProductName,Price:this.Price,Count:this.Count};
             this.ProductList.push(obj);
+            total=CalTotal(this.ProductList);
+            this.$refs.Total.innerText=total;
         },
         DelProduct(index){
             this.ProductList.splice(index,1);
         }
+    },
+    mounted(){
+        var total=0;
+        total=CalTotal(this.ProductList);
+        this.$refs.Total.innerText=total;
     }
 });
+
+function CalTotal(list){
+    var total=0;
+    list.forEach(function (element) {
+            total+=element.Price*element.Count;
+          });
+    return total;
+        }
