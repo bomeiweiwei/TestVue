@@ -38,7 +38,7 @@ var vm=new Vue({
 
             if(newList.length>=2){
                 var id=newList[1];
-                var obj=this.drinkArray.find(element=>element.id==id);
+                var obj=this.drinkArray.find(element=>{return element.id==id});
                 if(obj!=null){
                     _showList.push(`第二杯半價=>${obj.name} * 1 = ${obj.price/2}`);
                     this.Total+=obj.price/2;
