@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./page.css">
+</head>
+<body>
+    <div id="app">
+        <example1></example1>
+        <example2 ref="comp"></example2>
+        <button @click="btn_click">按我</button>
+        <br>
+        <example3></example3>
+        <br>
+        <example4>
+            拉拉拉拉拉
+            <div slot="tag2">66666</div>
+        </example4>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
+</body>
+</html>

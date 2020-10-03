@@ -28,16 +28,36 @@
         </a>
       </li>
     </ul>
+
+    <!--<example val="Hello world"></example>
+    <example v-bind:val="ValueA"></example>-->
+    <example></example>
+    <example value="30"></example>
   </div>
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
   <script>
+Vue.component('example',{
+  template:`
+    <p>{{ value }}</p>
+  `,
+  props:{
+    value:{
+      type:Number,
+      default:5566
+    }
+  }//['val']
+});
+
     var app = new Vue({
       el: '#app',
       data: {
         greeting: 'Welcome to your Vue.js app!',
         docsURL: 'http://vuejs.org/guide/',
         discordURL: 'https://chat.vuejs.org',
-        forumURL: 'http://forum.vuejs.org/'
+        forumURL: 'http://forum.vuejs.org/',
+
+        ValueA:'GGGGGGGGGGGGGG'
       },
       methods: {
         humanizeURL: function (url) {
